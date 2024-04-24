@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,8 +36,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'member'
+    'channels',
+    'member',
 ]
+
+ASGI_APPLICATION = 'learn_django.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND':'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,12 +84,13 @@ WSGI_APPLICATION = 'learn_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'masteruser',
-        'PASSWORD': 'Admin123',
-        'HOST': 'dbgomoku.ctqa0o42sgfd.ap-southeast-2.rds.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': 'postgres',
+        # 'USER': 'masteruser',
+        # 'PASSWORD': 'Admin123',
+        # 'HOST': 'dbgomoku.ctqa0o42sgfd.ap-southeast-2.rds.amazonaws.com',
+        # 'PORT': '5432'
     }
 }
 
